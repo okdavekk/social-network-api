@@ -24,7 +24,7 @@
 Run these commands in the root of the directory:
 
 - npm i
-- npm test
+- npm run start
 
 ## Your Task
 
