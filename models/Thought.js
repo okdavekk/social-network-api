@@ -7,7 +7,7 @@ const thoughtSchema = new Schema(
     {
         thoughtText: {
             type: String,
-            Required: 'Say something',
+            Required: true,
             minlength: 1,
             maxlength: 280
         },
@@ -29,6 +29,11 @@ const thoughtSchema = new Schema(
         id: false,
       }
 );
+
+reactionCount.virtual('reactions').get(function () {
+    return this.reactions.length;
+});
+
 
 const Thought = model('thought', thoughtSchema);
 
