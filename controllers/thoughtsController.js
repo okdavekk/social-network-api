@@ -1,26 +1,42 @@
-const User = require('../models/User');
+//Needs to be reafactored
+
+const { Post, User } = require('../models');
 
 module.exports = {
-  getUsers(req, res) {
-    User.find()
-      .then((users) => res.json(users))
+  get(req, res) {
+    Post.find()
+      .then((posts) => res.json(posts))
       .catch((err) => res.status(500).json(err));
   },
-  getSingleUser(req, res) {
-    User.findOne({ _id: req.params.userId })
-      .select('-__v')
-      .populate('posts')
-      .then((user) =>
-        !user
-          ? res.status(404).json({ message: 'No user with that ID' })
-          : res.json(user)
+  getSinglePost(req, res) {
+    Post.findOne({ _id: req.params.postId })
+      .then((post) =>
+        !post
+          ? res.status(404).json({ message: 'No post with that ID' })
+          : res.json(post)
       )
       .catch((err) => res.status(500).json(err));
   },
-  // create a new user
-  createUser(req, res) {
-    User.create(req.body)
-      .then((dbUserData) => res.json(dbUserData))
-      .catch((err) => res.status(500).json(err));
+  // create a new post
+  createPost(req, res) {
+    Post.create(req.body)
+      .then((post) => {
+        return User.findOneAndUpdate(
+          { _id: req.body.userId },
+          { $addToSet: { posts: post._id } },
+          { new: true }
+        );
+      })
+      .then((user) =>
+        !user
+          ? res
+              .status(404)
+              .json({ message: 'Post created, but found no user with that ID' })
+          : res.json('Created the post 🎉')
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   },
 };
