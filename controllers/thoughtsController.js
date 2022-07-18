@@ -60,30 +60,28 @@ const thoughtController = {
   addAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $addToSet: { friends: req.params.thoughtId } },
-      { new: true }
+      { $addToSet: { reactions: req.body } },
+      { runValidators: true, new: true }
     )
-      .then((thoughtData) => {
-        res.json(thoughtData);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+      .then((thoughtData) =>
+        !thoughtData
+          ? res.status(404).json({ message: "No thought with this id!" })
+          : res.json(thoughtData)
+      )
+      .catch((err) => res.status(500).json(err));
   },
   removeAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { friends: req.params.thoughtId } },
-      { new: true }
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { runValidators: true, new: true }
     )
-      .then((thoughtData) => {
-        res.json(thoughtData);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+      .then((thoughtData) =>
+        !thoughtData
+          ? res.status(404).json({ message: "No thought with this id!" })
+          : res.json(thoughtData)
+      )
+      .catch((err) => res.status(500).json(err));
   },
 };
 

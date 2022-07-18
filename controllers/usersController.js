@@ -63,30 +63,30 @@ const userController = {
   addAFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { friends: req.params.friendId } },
-      { new: true }
+      { $addToSet: { friends: req.body } },
+      { runValidators: true, new: true }
     )
-      .then((userData) => {
-        res.json(userData);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+
+      .then((userData) =>
+        !userData
+          ? res.status(404).json({ message: "No video with this id!" })
+          : res.json(userData)
+      )
+      .catch((err) => res.status(500).json(err));
   },
   removeAFriendByID(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { friends: req.params.friendId } },
+      { $pull: { friends: { userId: req.params.friendId } } },
       { new: true }
     )
-      .then((userData) => {
-        res.json(userData);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
+
+      .then((userData) =>
+        !userData
+          ? res.status(404).json({ message: "No thought with this id!" })
+          : res.json(userData)
+      )
+      .catch((err) => res.status(500).json(err));
   },
 };
 
