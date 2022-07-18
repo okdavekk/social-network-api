@@ -60,6 +60,7 @@ const userController = {
         res.status(500).json(err);
       });
   },
+  // TODO: Get me Working
   addAFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
@@ -74,6 +75,7 @@ const userController = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  // TODO: Get me Working
   removeAFriendByID(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },

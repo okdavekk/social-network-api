@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
+// TODO: is reactionSchema needed?
 const reactionSchema = require("./Reaction");
-// const dateFormat = require("../utils/dateFormat");
+const dateFormat = require("../utils/dateFormater.js");
 
 const thoughtSchema = new Schema(
   {
@@ -13,7 +14,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      // get: (timestamp) => dateFormat(timestamp),
+      get: (reformattedTime) => dateFormat(reformattedTime),
     },
     username: {
       type: String,
@@ -28,6 +29,8 @@ const thoughtSchema = new Schema(
     id: false,
   }
 );
+
+// TODO: Get me Working
 
 // reactionCount.virtual("reaction").get(function () {
 //   return this.reaction.length;

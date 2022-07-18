@@ -57,6 +57,7 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
+  // TODO: Get me Working
   addAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -70,6 +71,7 @@ const thoughtController = {
       )
       .catch((err) => res.status(500).json(err));
   },
+  // TODO: Get me Working
   removeAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
