@@ -18,7 +18,14 @@
 ## Resources
 - [REPOSITORY](https://github.com/okdavekk/movie-preferences)
 
-- [Video]()
+- [VIDEO: USER ROUTES](https://www.awesomescreenshot.com/video/10011385?key=62cfaf9e86a63b3e3087a5abe9d8df5c)
+
+- [VIDEO: THOUGHT ROUTES](https://www.awesomescreenshot.com/video/10011486?key=a19d5d22e4468993cb08dee075c707d9)
+
+- [VIDEO: REACTION ROUTES]()
+
+- [VIDEO: FRIEND ROUTES]()
+
 
 ## Installation
 Run these commands in the root of the directory:

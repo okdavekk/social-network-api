@@ -46,7 +46,7 @@ const userController = {
         res.json(userData);
       })
       .catch((err) => {
-        consoloe.log(err);
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -56,7 +56,7 @@ const userController = {
         res.json({ message: "Deleted yo" });
       })
       .catch((err) => {
-        consoloe.log(err);
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -70,7 +70,7 @@ const userController = {
         res.json(userData);
       })
       .catch((err) => {
-        consoloe.log(err);
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -84,7 +84,7 @@ const userController = {
         res.json(userData);
       })
       .catch((err) => {
-        consoloe.log(err);
+        console.log(err);
         res.status(500).json(err);
       });
   },

@@ -1,6 +1,16 @@
 const Thought = require("../models/Thought");
 
 const thoughtController = {
+  createAThought(req, res) {
+    Thought.create(req.body)
+      .then((thoughtData) => {
+        res.json(thoughtData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
   getAllThoughts(req, res) {
     Thought.find()
       .sort({ createdAt: -1 })
@@ -13,7 +23,7 @@ const thoughtController = {
       });
   },
   getASingleThoughtByID(req, res) {
-    Thought.findOne({ _id: req.params.thoughtID })
+    Thought.findOne({ _id: req.params.thoughtId })
       .then((thoughtData) => {
         res.json(thoughtData);
       })
@@ -22,19 +32,10 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-  createAThought(req, res) {
-    Thought.create(req.body)
-      .then((thoughtData) => {
-        res.json(thoughtData);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  },
+
   updateAThoughtByID(req, res) {
     Thought.findByIdAndUpdate(
-      { _id: req.params.thoughtID },
+      { _id: req.params.thoughtId },
       { $set: req.body },
       { runValidators: true, new: true }
     )
@@ -42,17 +43,17 @@ const thoughtController = {
         res.json(thoughtData);
       })
       .catch((err) => {
-        consoloe.log(err);
+        console.log(err);
         res.status(500).json(err);
       });
   },
   deleteAThoughtByID(req, res) {
-    Thought.findOneAndDelete({ _id: req.params.thoughtID })
+    Thought.findOneAndDelete({ _id: req.params.thoughtId })
       .then(() => {
         res.json({ message: "Deleted yo" });
       })
       .catch((err) => {
-        consoloe.log(err);
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -66,7 +67,7 @@ const thoughtController = {
         res.json(thoughtData);
       })
       .catch((err) => {
-        consoloe.log(err);
+        console.log(err);
         res.status(500).json(err);
       });
   },
@@ -80,7 +81,7 @@ const thoughtController = {
         res.json(thoughtData);
       })
       .catch((err) => {
-        consoloe.log(err);
+        console.log(err);
         res.status(500).json(err);
       });
   },
