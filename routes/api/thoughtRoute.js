@@ -13,7 +13,6 @@ const {
 router
   .route("/")
   .get(getAllThoughts)
-  .post(createAThought);
 
 router
   .route("/:thoughtId")
@@ -28,5 +27,9 @@ router
 router
   .route("/:thoughtId/reactions/:reactionId")
   .delete(removeAReactionByID);
+
+router
+  .route("/:userId")
+  .post(createAThought);
 
 module.exports = router;

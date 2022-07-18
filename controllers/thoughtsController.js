@@ -1,14 +1,26 @@
 const Thought = require("../models/Thought");
+const User = require("../models/User");
 
 const thoughtController = {
   createAThought(req, res) {
     Thought.create(req.body)
       .then((thoughtData) => {
-        res.json(thoughtData);
+        User.findOneAndUpdate(
+          { _id: req.params.userId },
+          { $set: { thoughts: thoughtData._id } }
+        )
+          .then((userData) => {
+            res.json(userData);
+          })
+
+          .catch((err) => {
+            console.log(err);
+            res.status(500).json({ message: "error user not found" });
+          });
       })
       .catch((err) => {
         console.log(err);
-        res.status(500).json(err);
+        res.status(500).json({ message: "thought not created" });
       });
   },
   getAllThoughts(req, res) {
@@ -57,7 +69,6 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-  // TODO: Get me Working
   addAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -71,7 +82,6 @@ const thoughtController = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // TODO: Get me Working
   removeAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
