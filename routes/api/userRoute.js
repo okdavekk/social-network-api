@@ -10,7 +10,10 @@ const {
   removeAFriendByID,
 } = require("../../controllers/usersController");
 
-router.route("/").get(getAllUsers).post(createAUser);
+router
+  .route("/")
+  .get(getAllUsers)
+  .post(createAUser);
 
 router
   .route("/:userID")

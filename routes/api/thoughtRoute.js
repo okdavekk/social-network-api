@@ -18,8 +18,12 @@ router
   .put(updateAThoughtByID)
   .delete(deleteAThoughtByID);
 
-router.route("/:thoughtID/reactions").post(addAReactionByID);
+router
+  .route("/:thoughtID/reactions")
+  .post(addAReactionByID);
 
-router.route("/:thoughtId/reactions/reactionId").delete(removeAReactionByID);
+router
+  .route("/:thoughtId/reactions/reactionId")
+  .delete(removeAReactionByID);
 
 module.exports = router;
