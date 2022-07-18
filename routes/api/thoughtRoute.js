@@ -10,7 +10,10 @@ const {
   removeAReactionByID,
 } = require("../../controllers/thoughtsController");
 
-router.route("/").get(getAllThoughts).post(createAThought);
+router
+  .route("/")
+  .get(getAllThoughts)
+  .post(createAThought);
 
 router
   .route("/:thoughtId")

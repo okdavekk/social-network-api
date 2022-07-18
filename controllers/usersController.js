@@ -14,9 +14,9 @@ const userController = {
   },
   getASingleUserByID(req, res) {
     User.findOne({ _id: req.params.userID })
-      // .select("-_v")
-      // .populate("friends")
-      // .populate("thoughts")
+      .select("-_v")
+      .populate("friends")
+      .populate("thoughts")
       .then((userData) => {
         console.log(userData);
         res.json(userData);
@@ -63,7 +63,7 @@ const userController = {
   addAFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $addToSet: { friends: req.params.friendID } },
+      { $addToSet: { friends: req.params.friendId } },
       { new: true }
     )
       .then((userData) => {
@@ -77,7 +77,7 @@ const userController = {
   removeAFriendByID(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { friends: req.params.friendID } },
+      { $pull: { friends: req.params.friendId } },
       { new: true }
     )
       .then((userData) => {
