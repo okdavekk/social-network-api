@@ -13,17 +13,17 @@ const {
 router.route("/").get(getAllThoughts).post(createAThought);
 
 router
-  .route("/:thoughtID")
+  .route("/:thoughtId")
   .get(getASingleThoughtByID)
   .put(updateAThoughtByID)
   .delete(deleteAThoughtByID);
 
 router
-  .route("/:thoughtID/reactions")
+  .route("/:thoughtId/reactions")
   .post(addAReactionByID);
 
 router
-  .route("/:thoughtId/reactions/reactionId")
+  .route("/:thoughtId/reactions/:reactionId")
   .delete(removeAReactionByID);
 
 module.exports = router;

@@ -59,7 +59,7 @@ const thoughtController = {
   addAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $addToSet: { friends: req.params.thoughtID } },
+      { $addToSet: { friends: req.params.thoughtId } },
       { new: true }
     )
       .then((thoughtData) => {
@@ -73,7 +73,7 @@ const thoughtController = {
   removeAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
-      { $pull: { friends: req.params.thoughtID } },
+      { $pull: { friends: req.params.thoughtId } },
       { new: true }
     )
       .then((thoughtData) => {
