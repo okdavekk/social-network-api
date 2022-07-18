@@ -22,7 +22,6 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-
   createAThought(req, res) {
     Thought.create(req.body)
       .then((thoughtData) => {
@@ -47,7 +46,6 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-
   deleteAThoughtByID(req, res) {
     Thought.findOneAndDelete({ _id: req.params.thoughtID })
       .then(() => {
@@ -58,7 +56,6 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-
   addAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
@@ -73,7 +70,6 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-
   removeAReactionByID(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },

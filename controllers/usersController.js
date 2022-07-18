@@ -74,7 +74,6 @@ const userController = {
         res.status(500).json(err);
       });
   },
-
   removeAFriendByID(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
