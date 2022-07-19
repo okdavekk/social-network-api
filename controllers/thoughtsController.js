@@ -44,7 +44,6 @@ const thoughtController = {
         res.status(500).json(err);
       });
   },
-
   updateAThoughtByID(req, res) {
     Thought.findByIdAndUpdate(
       { _id: req.params.thoughtId },

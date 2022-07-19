@@ -1,6 +1,16 @@
 const User = require("../models/User");
 
 const userController = {
+  createAUser(req, res) {
+    User.create(req.body)
+      .then((userData) => {
+        res.json(userData);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
   getAllUsers(req, res) {
     User.find()
       .select("-_v")
@@ -17,16 +27,6 @@ const userController = {
       .select("-_v")
       .then((userData) => {
         console.log(userData);
-        res.json(userData);
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-  },
-  createAUser(req, res) {
-    User.create(req.body)
-      .then((userData) => {
         res.json(userData);
       })
       .catch((err) => {
