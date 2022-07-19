@@ -15,8 +15,6 @@ const userController = {
   getASingleUserByID(req, res) {
     User.findOne({ _id: req.params.userID })
       .select("-_v")
-      .populate("friends")
-      .populate("thoughts")
       .then((userData) => {
         console.log(userData);
         res.json(userData);
